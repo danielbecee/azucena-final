@@ -1,0 +1,93 @@
+/* Estilos globales compartidos */
+
+:root {
+  /* Variables de colores principales */
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #0dcaf0;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+}
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estructura base */
+.content-wrapper {
+  padding: 1.5rem;
+}
+
+/* Mejoras de tabla */
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  border-top: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* Animaciones generales */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+/* Estilos de botones y badges */
+.badge {
+  font-weight: 500;
+  padding: 0.35em 0.65em;
+}
+
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+/* Formularios */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 1rem;
+  }
+  
+  .table-responsive {
+    margin-bottom: 1rem;
+  }
+}

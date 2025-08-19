@@ -1,0 +1,177 @@
+/* Estilos para el panel de administración */
+
+/* Estilos de la barra lateral */
+.sidebar {
+  min-width: 250px;
+  min-height: 100vh;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transition: all 0.3s;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Logo y cabecera del sidebar */
+.sidebar .logo-container img {
+  max-height: 40px;
+  width: auto;
+}
+
+/* Estilos para los enlaces del menú */
+.sidebar .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.7rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 3px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .nav-link:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .nav-link.active {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.15);
+  font-weight: 500;
+}
+
+/* Estilos para el menú desplegable */
+.sidebar .collapse {
+  transition: all 0.3s;
+}
+
+.sidebar .collapse .nav-link {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9em;
+}
+
+.sidebar .collapse .border-start {
+  border-left-width: 1px !important;
+}
+
+/* Animación para el icono de chevron */
+.sidebar a[data-bs-toggle="collapse"] .fa-chevron-down {
+  transition: transform 0.3s;
+}
+
+.sidebar a[data-bs-toggle="collapse"][aria-expanded="true"] .fa-chevron-down {
+  transform: rotate(180deg);
+}
+
+/* Mejora visual para elementos activos */
+.sidebar .collapse .nav-link.active {
+  border-left: 3px solid #fff;
+  padding-left: calc(0.75rem - 3px);
+}
+
+/* Estilos para las tarjetas */
+.card {
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 0.75rem 1rem;
+}
+
+/* Estilos para botones */
+.btn-group .btn {
+  margin-right: 0.25rem;
+}
+
+/* Estilos para tablas */
+.table th {
+  font-weight: 600;
+  background-color: #f8f9fa;
+}
+
+/* Estilos para paginación */
+.pagination {
+  margin-bottom: 0;
+}
+
+/* Estilos para mostrar elementos activos/inactivos */
+.badge.bg-success {
+  background-color: #198754 !important;
+}
+
+.badge.bg-danger {
+  background-color: #dc3545 !important;
+}
+
+/* Indicador visual para menú colapsable */
+.sidebar a[data-bs-toggle="collapse"]::after {
+  display: block;
+  float: right;
+  content: "\f107";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  transition: all 0.2s;
+}
+
+.sidebar a[data-bs-toggle="collapse"][aria-expanded="true"]::after {
+  transform: rotate(180deg);
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+  .sidebar {
+    min-width: auto;
+    width: 100%;
+    position: relative;
+    height: auto;
+    min-height: auto;
+  }
+  
+  body.mobile-sidebar-open .sidebar {
+    position: fixed;
+    height: 100vh;
+    width: 250px;
+    z-index: 1050;
+  }
+  
+  .sidebar-toggle-btn {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1060;
+    background-color: rgba(33, 37, 41, 0.8);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    text-align: center;
+    line-height: 40px;
+  }
+  
+  .sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    display: none;
+  }
+  
+  body.mobile-sidebar-open .sidebar-backdrop {
+    display: block;
+  }
+  
+  main.content-wrapper {
+    width: 100%;
+  }
+}
