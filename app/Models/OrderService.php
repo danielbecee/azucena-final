@@ -17,6 +17,7 @@ class OrderService extends Model
         'service_name',
         'price',
         'subtotal',
+        'quantity',
         'description'
     ];
 

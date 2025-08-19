@@ -101,13 +101,17 @@
                                                 <option value="">Seleccione servicio</option>
                                             </select>
                                         </div>
+                                        <div class="col-md-1 mb-2">
+                                            <label class="form-label">Cant.</label>
+                                            <input type="number" step="1" min="1" class="form-control service-item-quantity-input" name="service_item_quantity[]" value="1">
+                                        </div>
                                         <div class="col-md-2 mb-2">
                                             <label class="form-label">Precio €</label>
                                             <input type="number" step="0.01" min="0" class="form-control service-item-price-input" name="service_item_price[]" value="0.00">
                                         </div>
-                                        <div class="col-md-3 mb-2">
-                                            <label class="form-label">Nota servicio</label>
-                                            <input type="text" class="form-control service-note" name="service_description[]" placeholder="Descripción breve...">
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">Nota</label>
+                                            <input type="text" class="form-control service-note" name="service_description[]" placeholder="Descripción...">
                                         </div>
                                         <div class="col-md-1 mb-2 d-flex align-items-end">
                                             <button type="button" class="btn btn-sm btn-outline-danger remove-service">
@@ -223,6 +227,7 @@
             serviceRow.querySelector('.service-item-select').value = '';
             serviceRow.querySelector('.service-item-select').disabled = true;
             serviceRow.querySelector('.service-item-price-input').value = '0.00';
+            serviceRow.querySelector('.service-item-quantity-input').value = '1'; // Establecer cantidad por defecto
             serviceRow.querySelector('.service-note').value = ''; // Resetear el campo de notas
             
             // Set up remove button
@@ -324,6 +329,13 @@
                     updateTotals();
                 });
             });
+            
+            // Setup quantity input change listeners
+            document.querySelectorAll('.service-item-quantity-input').forEach(input => {
+                input.addEventListener('input', function() {
+                    updateTotals();
+                });
+            });
         }
 
         // Initialize listeners
@@ -343,10 +355,12 @@
             document.querySelectorAll('.service-row').forEach(row => {
                 const select = row.querySelector('.service-item-select');
                 const priceInput = row.querySelector('.service-item-price-input');
+                const quantityInput = row.querySelector('.service-item-quantity-input');
                 
                 if (select.value && !select.disabled) {
                     const price = parseFloat(priceInput.value) || 0;
-                    subtotal += price;
+                    const quantity = parseInt(quantityInput.value) || 1;
+                    subtotal += price * quantity;
                 }
             });
             

@@ -204,6 +204,7 @@ class OrderController extends Controller
             'due_date' => 'required|date',
             'service_item_id' => 'required|array',
             'service_item_price' => 'nullable|array',
+            'service_item_quantity' => 'nullable|array',
             'payment_state_id' => 'required|exists:states,id',
             'order_state_id' => 'required|exists:states,id',
             'paid_amount' => 'nullable|numeric|min:0',
@@ -245,7 +246,8 @@ class OrderController extends Controller
                         $serviceItem = ServiceItem::find($serviceItemId);
                         if ($serviceItem) {
                             $price = $request->service_item_price[$key] ?? $serviceItem->price;
-                            $subtotal = $price; // Ya no hay cantidad multiplicada para servicios específicos
+                            $quantity = $request->service_item_quantity[$key] ?? 1;
+                            $subtotal = $price * $quantity;
                             $total += $subtotal;
                             
                             // Obtener la descripción específica para este servicio
@@ -256,6 +258,7 @@ class OrderController extends Controller
                                 'service_category_id' => $serviceItem->service_category_id,
                                 'service_name' => $serviceItem->name, // Guardamos el nombre para referencia histórica
                                 'price' => $price,
+                                'quantity' => $quantity,
                                 'subtotal' => $subtotal,
                                 'description' => $description
                             ];
@@ -358,6 +361,7 @@ class OrderController extends Controller
             'due_date' => 'required|date',
             'service_item_id' => 'nullable|array',
             'service_item_price' => 'nullable|array',
+            'service_item_quantity' => 'nullable|array',
             'payment_state_id' => 'required|exists:states,id',
             'order_state_id' => 'required|exists:states,id',
             'paid_amount' => 'nullable|numeric|min:0',
@@ -386,7 +390,8 @@ class OrderController extends Controller
                         $serviceItem = ServiceItem::find($serviceItemId);
                         if ($serviceItem) {
                             $price = $request->service_item_price[$key] ?? $serviceItem->price;
-                            $subtotal = $price; // Ya no hay cantidad multiplicada para servicios específicos
+                            $quantity = $request->service_item_quantity[$key] ?? 1;
+                            $subtotal = $price * $quantity;
                             $total += $subtotal;
                             
                             // Obtener la descripción específica para este servicio
@@ -397,6 +402,7 @@ class OrderController extends Controller
                                 'service_category_id' => $serviceItem->service_category_id,
                                 'service_name' => $serviceItem->name,
                                 'price' => $price,
+                                'quantity' => $quantity,
                                 'subtotal' => $subtotal,
                                 'description' => $description
                             ];
