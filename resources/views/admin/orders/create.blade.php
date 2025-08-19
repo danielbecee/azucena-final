@@ -41,7 +41,7 @@
                                     <select class="form-select searchable" id="customer_id" name="customer_id" required>
                                         <option value="">Seleccione un cliente</option>
                                         @foreach($customers as $customer)
-                                            <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected' : '' }}>
+                                            <option value="{{ $customer->id }}" {{ (old('customer_id') == $customer->id || (isset($selectedCustomerId) && $selectedCustomerId == $customer->id)) ? 'selected' : '' }}>
                                                 {{ $customer->first_name }} {{ $customer->last_name }} - {{ $customer->phone }} - {{ $customer->email }}
                                             </option>
                                         @endforeach

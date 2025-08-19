@@ -178,14 +178,17 @@ class OrderController extends Controller
     /**
      * Muestra el formulario para crear un pedido
      */
-    public function create()
+    public function create(Request $request)
     {
         $customers = Customer::orderBy('first_name')->get();
         $serviceCategories = ServiceCategory::with('serviceItems')->orderBy('name')->get();
         $orderStates = State::where('type', 'order')->orderBy('name')->get();
         $paymentStates = State::where('type', 'payment')->orderBy('name')->get();
         
-        return view('admin.orders.create', compact('customers', 'serviceCategories', 'orderStates', 'paymentStates'));
+        // Si llega customer_id en la URL, lo pasamos a la vista para preseleccionar
+        $selectedCustomerId = $request->query('customer_id');
+        
+        return view('admin.orders.create', compact('customers', 'serviceCategories', 'orderStates', 'paymentStates', 'selectedCustomerId'));
     }
 
     /**

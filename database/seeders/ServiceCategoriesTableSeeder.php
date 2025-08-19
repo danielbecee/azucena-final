@@ -12,8 +12,24 @@ class ServiceCategoriesTableSeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Corte y arreglo',
-                'description' => 'Servicios de corte y arreglo de prendas'
+                'name' => 'Arreglos pantalón',
+                'description' => 'Arreglos específicos para pantalones'
+            ],
+            [
+                'name' => 'Arreglos falda',
+                'description' => 'Arreglos específicos para faldas'
+            ],
+            [
+                'name' => 'Arreglos camisa',
+                'description' => 'Arreglos específicos para camisas'
+            ],
+            [
+                'name' => 'Arreglos vestido',
+                'description' => 'Arreglos específicos para vestidos'
+            ],
+            [
+                'name' => 'Arreglos abrigo',
+                'description' => 'Arreglos específicos para abrigos y chaquetas'
             ],
             [
                 'name' => 'Tintorería',
@@ -22,6 +38,14 @@ class ServiceCategoriesTableSeeder extends Seeder
             [
                 'name' => 'Bordado',
                 'description' => 'Servicios de bordado personalizado'
+            ],
+            [
+                'name' => 'Personalización',
+                'description' => 'Servicios de personalización de prendas'
+            ],
+            [
+                'name' => 'Reparación',
+                'description' => 'Servicios de reparación de prendas y tejidos'
             ],
             [
                 'name' => 'General',
